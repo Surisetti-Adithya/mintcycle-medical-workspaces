@@ -22,10 +22,11 @@ const demoRequests: DonationRequest[] = [
 
 type MediCycleContextValue = {
   role: MediCycleRole;
+  accountName: string;
   isSignedIn: boolean;
   medicines: Medicine[];
   requests: DonationRequest[];
-  signIn: (role: MediCycleRole) => void;
+  signIn: (role: MediCycleRole, accountName?: string) => void;
   signOut: () => void;
   donate: (medicine: Medicine) => void;
   requestMedicine: (medicineId: string, quantity: number, reason: string) => { ok: boolean; message: string };
@@ -37,12 +38,14 @@ const MediCycleContext = createContext<MediCycleContextValue | null>(null);
 
 export function MediCycleProvider({ children }: { children: ReactNode }) {
   const [role, setRole] = useState<MediCycleRole>("shop");
+  const [accountName, setAccountName] = useState("Hopewell Community Care");
   const [isSignedIn, setSignedIn] = useState(false);
   const [medicines, setMedicines] = useState(demoMedicines);
   const [requests, setRequests] = useState(demoRequests);
 
-  const signIn = useCallback((selectedRole: MediCycleRole) => {
+  const signIn = useCallback((selectedRole: MediCycleRole, selectedAccountName?: string) => {
     setRole(selectedRole);
+    setAccountName(selectedAccountName?.trim() || (selectedRole === "shop" ? "Greenway Pharmacy" : "Hopewell Community Care"));
     setSignedIn(true);
   }, []);
   const signOut = useCallback(() => setSignedIn(false), []);
@@ -52,7 +55,7 @@ export function MediCycleProvider({ children }: { children: ReactNode }) {
     if (!medicine) return { ok: false, message: "Choose an available medicine." };
     const result = submitRequest(requests, medicines, {
       id: `REQ-${Math.floor(2050 + Math.random() * 7000)}`,
-      organization: "Hopewell Community Care",
+      organization: accountName,
       medicineId,
       medicineName: medicine.name,
       quantity,
@@ -63,7 +66,7 @@ export function MediCycleProvider({ children }: { children: ReactNode }) {
     if (!result.ok) return { ok: false, message: result.message };
     setRequests(result.requests);
     return { ok: true, message: "Your request is now pending review." };
-  }, [medicines, requests]);
+  }, [accountName, medicines, requests]);
   const updateRequest = useCallback((requestId: string, decision: "Approved" | "Rejected") => {
     const result = decideRequest(requests, medicines, requestId, decision);
     if (!result.ok) return { ok: false, message: result.message };
@@ -75,7 +78,7 @@ export function MediCycleProvider({ children }: { children: ReactNode }) {
     setRequests((current) => current.map((item) => item.id === requestId && item.status === "Approved" ? { ...item, status: "Fulfilled" } : item));
   }, []);
 
-  const value = useMemo(() => ({ role, isSignedIn, medicines, requests, signIn, signOut, donate, requestMedicine, updateRequest, fulfillRequest }), [role, isSignedIn, medicines, requests, signIn, signOut, donate, requestMedicine, updateRequest, fulfillRequest]);
+  const value = useMemo(() => ({ role, accountName, isSignedIn, medicines, requests, signIn, signOut, donate, requestMedicine, updateRequest, fulfillRequest }), [role, accountName, isSignedIn, medicines, requests, signIn, signOut, donate, requestMedicine, updateRequest, fulfillRequest]);
   return <MediCycleContext.Provider value={value}>{children}</MediCycleContext.Provider>;
 }
 

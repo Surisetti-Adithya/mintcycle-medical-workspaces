@@ -10,33 +10,161 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as OrganizationRouteImport } from './routes/organization'
+import { Route as RegisterRouteImport } from './routes/register'
+import { Route as ShopRouteImport } from './routes/shop'
+import { Route as OrganizationMedicinesRouteImport } from './routes/organization.medicines'
+import { Route as OrganizationReportsRouteImport } from './routes/organization.reports'
+import { Route as OrganizationRequestsRouteImport } from './routes/organization.requests'
+import { Route as ShopDonationsRouteImport } from './routes/shop.donations'
+import { Route as ShopInventoryRouteImport } from './routes/shop.inventory'
+import { Route as ShopRequestsRouteImport } from './routes/shop.requests'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrganizationRoute = OrganizationRouteImport.update({
+  id: '/organization',
+  path: '/organization',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopRoute = ShopRouteImport.update({
+  id: '/shop',
+  path: '/shop',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrganizationMedicinesRoute = OrganizationMedicinesRouteImport.update({
+  id: '/medicines',
+  path: '/medicines',
+  getParentRoute: () => OrganizationRoute,
+} as any)
+const OrganizationReportsRoute = OrganizationReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => OrganizationRoute,
+} as any)
+const OrganizationRequestsRoute = OrganizationRequestsRouteImport.update({
+  id: '/requests',
+  path: '/requests',
+  getParentRoute: () => OrganizationRoute,
+} as any)
+const ShopDonationsRoute = ShopDonationsRouteImport.update({
+  id: '/donations',
+  path: '/donations',
+  getParentRoute: () => ShopRoute,
+} as any)
+const ShopInventoryRoute = ShopInventoryRouteImport.update({
+  id: '/inventory',
+  path: '/inventory',
+  getParentRoute: () => ShopRoute,
+} as any)
+const ShopRequestsRoute = ShopRequestsRouteImport.update({
+  id: '/requests',
+  path: '/requests',
+  getParentRoute: () => ShopRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/organization': typeof OrganizationRouteWithChildren
+  '/register': typeof RegisterRoute
+  '/shop': typeof ShopRouteWithChildren
+  '/organization/medicines': typeof OrganizationMedicinesRoute
+  '/organization/reports': typeof OrganizationReportsRoute
+  '/organization/requests': typeof OrganizationRequestsRoute
+  '/shop/donations': typeof ShopDonationsRoute
+  '/shop/inventory': typeof ShopInventoryRoute
+  '/shop/requests': typeof ShopRequestsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/organization': typeof OrganizationRouteWithChildren
+  '/register': typeof RegisterRoute
+  '/shop': typeof ShopRouteWithChildren
+  '/organization/medicines': typeof OrganizationMedicinesRoute
+  '/organization/reports': typeof OrganizationReportsRoute
+  '/organization/requests': typeof OrganizationRequestsRoute
+  '/shop/donations': typeof ShopDonationsRoute
+  '/shop/inventory': typeof ShopInventoryRoute
+  '/shop/requests': typeof ShopRequestsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/organization': typeof OrganizationRouteWithChildren
+  '/register': typeof RegisterRoute
+  '/shop': typeof ShopRouteWithChildren
+  '/organization/medicines': typeof OrganizationMedicinesRoute
+  '/organization/reports': typeof OrganizationReportsRoute
+  '/organization/requests': typeof OrganizationRequestsRoute
+  '/shop/donations': typeof ShopDonationsRoute
+  '/shop/inventory': typeof ShopInventoryRoute
+  '/shop/requests': typeof ShopRequestsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/organization'
+    | '/register'
+    | '/shop'
+    | '/organization/medicines'
+    | '/organization/reports'
+    | '/organization/requests'
+    | '/shop/donations'
+    | '/shop/inventory'
+    | '/shop/requests'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/login'
+    | '/organization'
+    | '/register'
+    | '/shop'
+    | '/organization/medicines'
+    | '/organization/reports'
+    | '/organization/requests'
+    | '/shop/donations'
+    | '/shop/inventory'
+    | '/shop/requests'
+  id:
+    | '__root__'
+    | '/'
+    | '/login'
+    | '/organization'
+    | '/register'
+    | '/shop'
+    | '/organization/medicines'
+    | '/organization/reports'
+    | '/organization/requests'
+    | '/shop/donations'
+    | '/shop/inventory'
+    | '/shop/requests'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LoginRoute: typeof LoginRoute
+  OrganizationRoute: typeof OrganizationRouteWithChildren
+  RegisterRoute: typeof RegisterRoute
+  ShopRoute: typeof ShopRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +176,115 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/organization': {
+      id: '/organization'
+      path: '/organization'
+      fullPath: '/organization'
+      preLoaderRoute: typeof OrganizationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop': {
+      id: '/shop'
+      path: '/shop'
+      fullPath: '/shop'
+      preLoaderRoute: typeof ShopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/organization/medicines': {
+      id: '/organization/medicines'
+      path: '/medicines'
+      fullPath: '/organization/medicines'
+      preLoaderRoute: typeof OrganizationMedicinesRouteImport
+      parentRoute: typeof OrganizationRoute
+    }
+    '/organization/reports': {
+      id: '/organization/reports'
+      path: '/reports'
+      fullPath: '/organization/reports'
+      preLoaderRoute: typeof OrganizationReportsRouteImport
+      parentRoute: typeof OrganizationRoute
+    }
+    '/organization/requests': {
+      id: '/organization/requests'
+      path: '/requests'
+      fullPath: '/organization/requests'
+      preLoaderRoute: typeof OrganizationRequestsRouteImport
+      parentRoute: typeof OrganizationRoute
+    }
+    '/shop/donations': {
+      id: '/shop/donations'
+      path: '/donations'
+      fullPath: '/shop/donations'
+      preLoaderRoute: typeof ShopDonationsRouteImport
+      parentRoute: typeof ShopRoute
+    }
+    '/shop/inventory': {
+      id: '/shop/inventory'
+      path: '/inventory'
+      fullPath: '/shop/inventory'
+      preLoaderRoute: typeof ShopInventoryRouteImport
+      parentRoute: typeof ShopRoute
+    }
+    '/shop/requests': {
+      id: '/shop/requests'
+      path: '/requests'
+      fullPath: '/shop/requests'
+      preLoaderRoute: typeof ShopRequestsRouteImport
+      parentRoute: typeof ShopRoute
+    }
   }
 }
 
+interface OrganizationRouteChildren {
+  OrganizationMedicinesRoute: typeof OrganizationMedicinesRoute
+  OrganizationReportsRoute: typeof OrganizationReportsRoute
+  OrganizationRequestsRoute: typeof OrganizationRequestsRoute
+}
+
+const OrganizationRouteChildren: OrganizationRouteChildren = {
+  OrganizationMedicinesRoute: OrganizationMedicinesRoute,
+  OrganizationReportsRoute: OrganizationReportsRoute,
+  OrganizationRequestsRoute: OrganizationRequestsRoute,
+}
+
+const OrganizationRouteWithChildren = OrganizationRoute._addFileChildren(
+  OrganizationRouteChildren,
+)
+
+interface ShopRouteChildren {
+  ShopDonationsRoute: typeof ShopDonationsRoute
+  ShopInventoryRoute: typeof ShopInventoryRoute
+  ShopRequestsRoute: typeof ShopRequestsRoute
+}
+
+const ShopRouteChildren: ShopRouteChildren = {
+  ShopDonationsRoute: ShopDonationsRoute,
+  ShopInventoryRoute: ShopInventoryRoute,
+  ShopRequestsRoute: ShopRequestsRoute,
+}
+
+const ShopRouteWithChildren = ShopRoute._addFileChildren(ShopRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LoginRoute: LoginRoute,
+  OrganizationRoute: OrganizationRouteWithChildren,
+  RegisterRoute: RegisterRoute,
+  ShopRoute: ShopRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
