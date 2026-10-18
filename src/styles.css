@@ -39,6 +39,10 @@
   --color-warning-soft: var(--warning-soft);
   --color-negative: var(--negative);
   --color-negative-soft: var(--negative-soft);
+  --color-sidebar-background: var(--sidebar-background);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-hover: var(--sidebar-hover);
+  --color-sidebar-active: var(--sidebar-active);
   --font-sans: "Inter", "Avenir Next", sans-serif;
   --font-display: "DM Sans", "Avenir Next", sans-serif;
 }
@@ -75,6 +79,10 @@
   --warning-soft: oklch(0.96 0.04 82);
   --negative: oklch(0.55 0.17 25);
   --negative-soft: oklch(0.96 0.025 26);
+  --sidebar-background: oklch(0.25 0.06 162);
+  --sidebar-foreground: oklch(0.94 0.012 160);
+  --sidebar-hover: oklch(0.32 0.065 163);
+  --sidebar-active: oklch(0.39 0.075 163);
   --shadow-soft: 0 14px 34px -24px oklch(0.29 0.065 162 / 24%);
   --shadow-image: 0 28px 60px -34px oklch(0.29 0.065 162 / 36%);
 }
@@ -110,6 +118,10 @@
   --warning-soft: oklch(0.3 0.05 82);
   --negative: oklch(0.75 0.13 25);
   --negative-soft: oklch(0.3 0.045 26);
+  --sidebar-background: oklch(0.13 0.025 163);
+  --sidebar-foreground: oklch(0.93 0.012 160);
+  --sidebar-hover: oklch(0.21 0.035 163);
+  --sidebar-active: oklch(0.29 0.045 163);
   --shadow-soft: 0 14px 34px -24px oklch(0.05 0.01 160 / 50%);
   --shadow-image: 0 28px 60px -34px oklch(0.05 0.01 160 / 60%);
 }
@@ -142,9 +154,9 @@
 @utility status-neutral { background: var(--color-muted); color: var(--color-muted-foreground); }
 @utility table-head { color: var(--color-muted-foreground); font-size: 0.68rem; font-weight: 650; text-align: left; text-transform: uppercase; letter-spacing: 0.08em; }
 @utility dashboard-card { border: 1px solid var(--color-border); border-radius: 8px; background: var(--color-card); box-shadow: var(--shadow-soft); }
-@utility workspace-link { display: flex; align-items: center; gap: 0.7rem; min-height: 42px; border-radius: 7px; padding: 0.6rem 0.75rem; color: oklch(0.90 0.018 160); font-size: 0.86rem; font-weight: 520; transition: background 160ms ease, color 160ms ease; }
-@utility workspace-link-active { background: oklch(0.37 0.07 163); color: oklch(0.99 0.005 160); }
-@utility workspace-link-idle { &:hover { background: oklch(0.34 0.06 163); color: oklch(0.99 0.005 160); } }
+@utility workspace-link { display: flex; align-items: center; gap: 0.7rem; min-height: 42px; border-radius: 7px; padding: 0.6rem 0.75rem; color: var(--color-sidebar-foreground); font-size: 0.86rem; font-weight: 520; transition: background 160ms ease, color 160ms ease; }
+@utility workspace-link-active { background: var(--color-sidebar-active); color: var(--color-sidebar-foreground); }
+@utility workspace-link-idle { &:hover { background: var(--color-sidebar-hover); color: var(--color-sidebar-foreground); } }
 @utility hero-photo { box-shadow: var(--shadow-image); }
 @utility impact-line { height: 8px; border-radius: 999px; background: var(--color-mint); }
 @utility focus-ring { &:focus-visible { outline: 2px solid var(--color-teal); outline-offset: 2px; } }

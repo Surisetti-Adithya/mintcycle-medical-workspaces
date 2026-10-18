@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+MediCycle screens share the client-side MediCycle state and workspace shell so role-specific navigation and demo actions remain consistent across file-based routes.
