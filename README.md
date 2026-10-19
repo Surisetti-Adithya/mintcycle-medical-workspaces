@@ -1,14 +1,18 @@
-# Welcome to your Lovable project
+# Mintcycle Medical Workspaces
+
+Refine the existing MediCycle UI to look more premium and visually distinctive. Preserve all existing functionality and page structure. Improve the typography, whitespace, card hierarchy, sidebar design, form styling, and color consistency. Make the landing page more visually striking with a well-composed healthcare hero image, and make the dashboards feel like a polished SaaS product. Use deep forest green, teal, white, and subtle mint backgrounds. Avoid excessive gradients, oversized cards, generic template layouts, and unnecessary decorative elements. Do not change the backend architecture or add new features.
 
 This project was built with [Lovable](https://lovable.dev).
 
+**Live app**: https://mintcycle-medical-workspaces.lovable.app
+
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/275fd354-d104-45a0-81f6-dee6073a4552).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +24,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
