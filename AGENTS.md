@@ -10,3 +10,5 @@
 <!-- LOVABLE:END -->
 
 MediCycle screens share the client-side MediCycle state and workspace shell so role-specific navigation and demo actions remain consistent across file-based routes.
+
+Shop and organization route roots render nested pages through `<Outlet />`, with their overview pages as index leaves, so child portal pages remain reachable.
